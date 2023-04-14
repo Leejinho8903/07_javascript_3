@@ -1,9 +1,10 @@
 // 생성자 함수 -> 클래스 문법으로 변경
-function Clock({ template }) {
-  
-  let timer;
+class Clock {
+  constructor({ template }) {
+    this.template = template;
+  }
 
-  function render() {
+  render() {
     let date = new Date();
 
     let hours = date.getHours();
@@ -15,7 +16,7 @@ function Clock({ template }) {
     let secs = date.getSeconds();
     if (secs < 10) secs = '0' + secs;
 
-    let output = template
+    let output = this.template
       .replace('h', hours)
       .replace('m', mins)
       .replace('s', secs);
@@ -23,16 +24,17 @@ function Clock({ template }) {
     console.log(output);
   }
 
-  this.stop = function() {
-    clearInterval(timer);
-  };
+  stop() {
+    clearInterval(this.timer);
+  }
 
-  this.start = function() {
-    render();
-    timer = setInterval(render, 1000);
-  };
-
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  }
 }
+
 
 let clock = new Clock({template: 'h:m:s'});
 clock.start();
+
