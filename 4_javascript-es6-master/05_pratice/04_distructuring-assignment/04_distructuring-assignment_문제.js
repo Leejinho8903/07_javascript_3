@@ -4,6 +4,7 @@
 // isAdmin 프로퍼티의 값을 변수 isAdmin에 할당(isAdmin이라는 프로퍼티가 없으면 false를 할당)
 
 let user = { name: "John", years: 30 };
+let {name, years:age, isAdmin=false} = user;
 
 // 코드 작성 후 출력 확인
 
